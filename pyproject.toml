@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "team-boardapi"
+version = "0.1.0"
+description = ""
+authors = ["gumba <gumba6740@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.14"
+fastapi = "^0.129.0"
+uvicorn = "^0.40.0"
+sqlalchemy = "^2.0.46"
+python-jose = "^3.5.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-dotenv = "^1.2.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.15.1"
+black = "^26.1.0"
+isort = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
