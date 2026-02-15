@@ -1,9 +1,9 @@
+from config import Config
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-import os
-from dotenv import load_dotenv
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-"""
-일단 급하게 만든 디비
-"""
+engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 
+SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
+Base = declarative_base()
