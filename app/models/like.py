@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 # Base: declarative_base (테이블 맵핑 기반 클래스)
 from app.core.database import Base
 
+
 class Like(Base):
     # 테이블 정의
     __tablename__ = "like"
