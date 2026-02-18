@@ -5,9 +5,8 @@ __pycache__/
 .idea
 .vscode
 instance/
-.gitignore
-main.py
-app/core/config.py
+
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/fastlane,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=fastlane,pycharm
