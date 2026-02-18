@@ -1,11 +1,6 @@
-
-from pydantic import (
-    BaseModel,
-    Field,
-    ConfigDict
-)
 from datetime import datetime
 
+from pydantic import BaseModel, ConfigDict, Field
 
 
 # comment 공통
@@ -34,8 +29,3 @@ class CommentRead(CommentBase):
 class CommentDelete(BaseModel):
     comment_id: int
     message: str = "댓글이 삭제되었습니다."
-
-
-
-
-
