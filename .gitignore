@@ -5,7 +5,8 @@ __pycache__/
 .idea
 .vscode
 review/
-
+instance/
+test_app.py
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/fastlane,pycharm
