@@ -19,8 +19,7 @@ class CommentRead(CommentBase):
     comment_id: int
     post_id: int
     user_id: int
-    created_at: datetime
-    updated_at: datetime | None = None
+    date_posted: datetime
 
     # ORM 객체를 pydantic으로 변환 가능
     model_config = ConfigDict(from_attributes=True)

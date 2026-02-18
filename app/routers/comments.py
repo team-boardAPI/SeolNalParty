@@ -48,7 +48,7 @@ def delete_comment(
 ):
     # 작성자만 삭제
     comment_service.delete_comment(
-        db=db, comment_id=comment_id, user_id=current_user.user_id
+        db=db, post_id=post_id, comment_id=comment_id, user_id=current_user.user_id
     )
 
-    return {"success": True, "message": "success"}
+    return {"success": True, "data": {"comment_id": comment_id}, "message": "success"}

@@ -32,19 +32,31 @@ def create_comment(db: Session, post_id: int, user_id: int, content: str) -> Com
             status_code=status.HTTP_404_NOT_FOUND, detail="게시글을 찾을 수 없습니다."
         )
 
-    comment = Comment(content=content, post_id=post_id, user_id=user_id)
+    if not content or not content.strip():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="댓글 내용은 비워둘 수 없습니다.",
+        )
+
+    comment = Comment(content=content.strip(), post_id=post_id, user_id=user_id)
     db.add(comment)
     db.commit()
     db.refresh(comment)
     return comment
 
 
-def delete_comment(db: Session, comment_id: int, user_id) -> None:
+def delete_comment(db: Session, post_id: int, comment_id: int, user_id: int) -> None:
     """작성자 만 삭제가능"""
     comment = db.get(Comment, comment_id)
     if comment is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="댓글이 없습니다.."
+        )
+
+    if comment.post_id != post_id:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="해당 게시글의 댓글이 아닙니다.",
         )
 
     # 작성자 확인
@@ -56,5 +68,3 @@ def delete_comment(db: Session, comment_id: int, user_id) -> None:
 
     db.delete(comment)
     db.commit()
-    db.refresh(comment)
-    db.close()
