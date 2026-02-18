@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from fastapi import HTTPException
 from jose import ExpiredSignatureError, JWTError, jwt
 
-
 # 로그아웃 용 블럭리스트
 BLOCKLIST = set()
 
@@ -28,9 +27,11 @@ def hash_password(pw: str) -> str:
     hashed = bcrypt.hashpw(pw_bytes, bcrypt.gensalt())
     return hashed.decode("utf-8")
 
+
 # 사용자 입력 패스워드와 젖아된 패스워드가 같은지 확인
 def verify_password(plain_pw: str, hashed_pw: str) -> bool:
     return bcrypt.checkpw(plain_pw.encode("utf-8"), hashed_pw.encode("utf-8"))
+
 
 # 액세스 토큰 발급
 def create_access_token(data: dict) -> str:
