@@ -13,6 +13,9 @@ sqlalchemy = "^2.0.46"
 python-jose = "^3.5.0"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 python-dotenv = "^1.2.1"
+integer = "^1.0.3"
+annotated = "^0.0.2"
+base = "^0.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
