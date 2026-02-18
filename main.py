@@ -1,9 +1,9 @@
 import uvicorn
 # 2. 데이터베이스 테이블 생성을 위한 모듈 가져오기
-from core.database import Base, engine
+from app.core.database import Base, engine
 from fastapi import FastAPI
 # 1. 우리가 만든 라우터 가져오기
-from routers import posts
+from app.routers import posts
 
 # 3. DB 테이블 자동 생성
 # 서버가 시작될 때, 모델(Post, User, Like 등)에 정의된 테이블이 DB에 없으면 자동으로 만들어줍니다.
