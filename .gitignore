@@ -7,7 +7,7 @@ __pycache__/
 instance/
 .gitignore
 main.py
-config.py
+app/core/config.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/fastlane,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=fastlane,pycharm
