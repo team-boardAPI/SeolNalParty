@@ -1,17 +1,29 @@
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import ForeignKey
+from sqlalchemy import (
+    Column,
+    ForeignKey,
+    Text,
+    Integer,
+    DateTime,
+)
+from datetime import datetime
+from sqlalchemy.orm import relationship
+from app.core.database import Base
 
 
 class Comment(Base):
     __tablename__ = "comments"
+    comment_id = Column(Integer, primary_key=True, index=True)
+    content=  Column(Text, nullable=False)
+    post_id = Column(
+        Integer,
+        ForeignKey("posts.posts.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    user_id = Column(
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    date_posted = Column(DateTime, nullable=False, default=datetime.utcnow)
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    content: Mapped[str] = mapped_column(nullable=False)
-    post_id: Mapped[int] = mapped_column(ForeignKey("posts.id"))
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-
-
-    def __repr__(self):
-        return f"Comment(id={self.id}, content={self.content}, post_id={self.post_id}, user_id={self.user_id})"
-
-
+    post = relationship("Post", back_populates="comments")
+    user = relationship("User", back_populates="comments")
