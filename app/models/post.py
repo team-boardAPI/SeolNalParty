@@ -8,7 +8,7 @@ from app.core.database import Base
 
 class Post(Base):
     # 테이블 정의
-    __tablename__ = "post"
+    __tablename__ = "posts"
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     content = Column(Text, nullable=False)
@@ -18,9 +18,9 @@ class Post(Base):
         nullable=False,
         server_default=func.now(),
     )
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
 
     # 데이터 관계
     author = relationship("User", back_populates="posts")
-    comments = relationship("Comment", back_populates="post")
-    likes = relationship("Like", back_populates="post")
+    comments = relationship("Comment", back_populates="posts")
+    likes = relationship("Like", back_populates="posts")
