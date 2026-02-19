@@ -1,8 +1,7 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
 
 from app.core.database import Base
-
-# from sqlalchemy.orm import relationship
 
 
 class User(Base):
@@ -14,4 +13,7 @@ class User(Base):
     password = Column(String, nullable=False)
     user_name = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
-    # posts = relationship("Post", back_populates="author")
+
+    posts = relationship("Post", back_populates="author")
+    comments = relationship("Comment", back_populates="author")
+    likes = relationship("Like", back_populates="user")

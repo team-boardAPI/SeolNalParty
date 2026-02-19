@@ -18,5 +18,5 @@ class Comment(Base):
     )
     date_posted = Column(DateTime, nullable=False, default=datetime.utcnow)
 
-    post = relationship("Post")
-    user = relationship("User")
+    post = relationship("Post", back_populates="comments")
+    author = relationship("User", back_populates="comments")

@@ -1,12 +1,9 @@
 from fastapi import APIRouter
 
-from app.schemas.token import CreateUser, LoginSchema, LogoutSchema, RefreshToken
-from app.services.auth_service import (
-    login_user,
-    logout_user,
-    refresh_access_token,
-    register_user,
-)
+from app.schemas.token import (CreateUser, LoginSchema, LogoutSchema,
+                               RefreshToken)
+from app.services.auth_service import (login_user, logout_user,
+                                       refresh_access_token, register_user)
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
 

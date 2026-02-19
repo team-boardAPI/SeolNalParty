@@ -2,13 +2,9 @@ from fastapi import HTTPException
 
 import app.core.security as sc
 from app.core.database import SessionLocal
-from app.core.security import (
-    BLOCKLIST,
-    create_access_token,
-    create_refresh_token,
-    verify_access_token,
-    verify_refresh_token,
-)
+from app.core.security import (BLOCKLIST, create_access_token,
+                               create_refresh_token, verify_access_token,
+                               verify_refresh_token)
 from app.models.user import User
 
 
