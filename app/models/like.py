@@ -9,8 +9,8 @@ class Like(Base):
     # 테이블 정의
     __tablename__ = "like"
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
-    post_id = Column(Integer, ForeignKey("post.id", ondelete="CASCADE"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    post_id = Column(Integer, ForeignKey("posts.id", ondelete="CASCADE"), nullable=False)
 
     # 제약 조건
     __table_args__ = (UniqueConstraint("user_id", "post_id"),)

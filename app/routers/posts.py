@@ -3,7 +3,7 @@ from typing import List
 from fastapi import APIRouter
 
 # 서비스
-from app.schemas.post import (CreatePost, PostResponse, PostResponseDetail,
+from app.schemas.post import (CreatePost, PostResponseList, PostResponseDetail,
                               UpdatePost)
 from app.services import post_service
 
@@ -14,7 +14,7 @@ router = APIRouter(
 
 
 # 게시글 조회
-@router.get("/", response_model=List[PostResponse])
+@router.get("/", response_model=List[PostResponseList])
 def get_posts():
     return post_service.get_all_posts()
 
@@ -26,13 +26,13 @@ def get_post(post_id: int) -> PostResponseDetail:
 
 
 # 게시글 등록
-@router.post("/", response_model=PostResponse)
+@router.post("/", response_model=CreatePost)
 def create_post(post: CreatePost):
     return post_service.create_post(post)
 
 
 # 게시글 수정
-@router.put("/{post_id}", response_model=PostResponse)
+@router.put("/{post_id}", response_model=UpdatePost)
 def update_post(post_id: int, post: UpdatePost):
     return post_service.update_post(post_id=post_id, post_update=post)
 
