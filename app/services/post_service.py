@@ -44,9 +44,6 @@ def get_post(db: Session, post_id: int):
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"{post_id} 인 게시글이 존재 하지 않습니다",
         )
-    # post_id like테이블의 행수
-    post.likes_count = len(post.likes)
-    post.post_comments = post.comments
     return post
 
 

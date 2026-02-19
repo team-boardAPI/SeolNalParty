@@ -22,5 +22,18 @@ class Post(Base):
 
     # 데이터 관계
     author = relationship("User", back_populates="posts")
-    comments = relationship("Comment", back_populates="posts")
-    likes = relationship("Like", back_populates="posts")
+    comments = relationship(
+        "Comment", back_populates="post", cascade="all, delete-orphan"
+    )
+    likes = relationship("Like", back_populates="post", cascade="all, delete-orphan")
+
+    # Pydantic이 요구하는 'like_count'를 계산해서 제공
+    @property
+    def like_count(self) -> int:
+        return len(self.likes) if self.likes else 0
+
+    # Pydantic이 요구하는 'post_comments'를 제공
+    # (모델의 관계명이 'comments'이므로 이를 'post_comments'라는 이름으로도 접근 가능하게 함)
+    @property
+    def post_comments(self):
+        return self.comments
